@@ -5,24 +5,38 @@
         <img src="../assets/logo.jpg" alt="Logo" />
         <p class="header__logo-text">Inform. Connect. Inspire.</p>
       </div>
-      <div class="header__control">
-        <div class="header__link-lang-wrapper">
+
+      <div class="header__nav">
+        <div
+          class="header__link-lang-wrapper"
+          :class="{ 'header__link-lang-wrapper_active': isMobileMenu }"
+        >
           <a class="header__link" href="#">Über uns</a>
           <a class="header__link" href="#">Redaktion</a>
           <button class="header__lang" disabled>de</button>
           <button class="header__lang">en</button>
         </div>
-        <div class="header__nav">
-          <ul class="header__nav-list">
-            <li class="header__nav-item">
-              <i class="fa fa-search"></i><span>|</span>
-            </li>
-            <li class="header__nav-item">design+lifestyle<span>|</span></li>
-            <li class="header__nav-item">trends<span>|</span></li>
-            <li class="header__nav-item">infodelight<span>|</span></li>
-            <li class="header__nav-item">smart living</li>
-          </ul>
+        <div
+          class="header__nav-menu-btn"
+          :class="{ 'header__nav-menu-btn_active': isMobileMenu }"
+          @click="showMobileMenu()"
+        >
+          <span class="header__nav-menu-btn-bar"></span>
+          <span class="header__nav-menu-btn-bar"></span>
+          <span class="header__nav-menu-btn-bar"></span>
         </div>
+        <ul
+          class="header__nav-list"
+          :class="{ 'header__nav-list_active': isMobileMenu }"
+        >
+          <li class="header__nav-item">
+            <i class="fa fa-search"></i><span>|</span>
+          </li>
+          <li class="header__nav-item">design+lifestyle<span>|</span></li>
+          <li class="header__nav-item">trends<span>|</span></li>
+          <li class="header__nav-item">infodelight<span>|</span></li>
+          <li class="header__nav-item">smart living</li>
+        </ul>
       </div>
     </header>
     <main class="main">
@@ -110,20 +124,33 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      isMobileMenu: false,
+    };
+  },
+
+  methods: {
+    showMobileMenu() {
+      this.isMobileMenu = !this.isMobileMenu;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-// header and nav section
+// HEADER and NAV section
+
 .header {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 40px;
+  padding: 0 2.5rem;
 
   &__logo {
-    padding: 0 10px 15px 0;
+    padding: 0 0 0.9375rem 0;
 
     &-text {
       font-weight: 500;
@@ -131,30 +158,43 @@ export default {};
     }
   }
 
-  &__control {
-  }
-
   &__link-lang-wrapper {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px 0;
+    padding: 0.9375rem;
   }
 
   &__link {
     text-decoration: none;
-    color: #333333;
+    color: hsl(0, 0%, 20%);
     padding: 10px;
+    margin: 0 10px;
   }
 
   &__lang {
-    height: 30px;
-    width: 30px;
+    height: 1.875rem;
+    width: 1.875rem;
     text-transform: uppercase;
     font-weight: bold;
   }
 
-  &__nav {
+  &__nav-menu-btn {
+    display: none;
+    float: right;
+    position: absolute;
+    z-index: 3;
+    top: 1.0625rem;
+    right: 1.25rem;
+
+    &-bar {
+      display: block;
+      width: 1.875rem;
+      height: 0.25rem;
+      margin: 0.625rem 0;
+      transition: all 0.3s ease-in-out;
+      background-color: hsl(0, 0%, 20%);
+    }
   }
 
   &__nav-list {
@@ -165,19 +205,21 @@ export default {};
     list-style: none;
     text-transform: uppercase;
     font-weight: 500;
-    padding: 10px 0 20px 15px;
+    padding: 0.625rem 0 1.25rem 0.9375rem;
 
     i {
       transform: rotate(90deg);
-      font-size: 20px;
+      font-size: 1.25rem;
     }
 
     span {
-      padding-left: 15px;
+      padding-left: 0.9375rem;
     }
   }
 }
-// main section
+
+// MAIN section
+
 .main {
   width: 100%;
 
@@ -185,9 +227,9 @@ export default {};
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
-    column-gap: 3px;
-    row-gap: 3px;
-    color: white;
+    column-gap: 0.125rem;
+    row-gap: 0.125rem;
+    color: hsl(0, 0%, 100%);
   }
 
   &__grid-item-a {
@@ -214,8 +256,8 @@ export default {};
     }
 
     &-text-center {
-      font-size: 30px;
-      margin: 40px 0;
+      font-size: 1.875rem;
+      margin: 2.5rem 0;
     }
 
     &-img {
@@ -231,7 +273,7 @@ export default {};
     grid-row-start: 1;
     grid-row-end: 2;
     position: relative;
-    background: #323232;
+    background: hsl(0, 0%, 20%);
 
     &-text-wrapper {
       height: 100%;
@@ -241,26 +283,26 @@ export default {};
       align-items: flex-start;
       position: absolute;
       top: 0;
-      padding: 40px;
+      padding: 15%;
     }
 
     &-text-top {
-      font-size: 30px;
+      font-size: 2vw;
     }
 
     &-text-center {
-      margin: 40px 0;
+      margin: 2.5rem 0;
       line-height: 2;
     }
 
     &-btn {
       background: none;
-      border: 2px solid white;
-      color: white;
-      padding: 10px;
-      width: 200px;
+      border: 0.125rem solid hsl(0, 0%, 100%);
+      color: hsl(0, 0%, 100%);
+      padding: 0.625rem;
+      width: 12.5rem;
       text-transform: uppercase;
-      margin: 0 0 10px 0;
+      margin: 0 0 1.25rem 0;
     }
   }
 
@@ -293,8 +335,8 @@ export default {};
     }
 
     &-text-center {
-      font-size: 30px;
-      margin: 40px 0;
+      font-size: 1.875rem;
+      margin: 2.5rem 0;
     }
   }
 
@@ -327,9 +369,202 @@ export default {};
     }
 
     &-text-center {
-      font-size: 30px;
-      margin: 40px 0;
+      font-size: 1.875rem;
+      margin: 2.5rem 0;
     }
+  }
+}
+
+@media (max-width: 1280px) {
+  .main__grid-item-b-text-center {
+    line-height: 1.5;
+    margin: 1rem 0;
+  }
+
+  .main__grid-item-b-btn {
+    margin: 0 0 0.625rem 0;
+  }
+}
+
+@media (max-width: 960px) {
+  .main__grid-item-a-text-center,
+  .main__grid-item-c-text-center,
+  .main__grid-item-d-text-center {
+    font-size: 1.25rem;
+    margin: 1.25rem;
+  }
+
+  .main__grid-item-b-text-center {
+    line-height: 1.5;
+    margin: 1rem 0;
+    font-size: 12px;
+  }
+
+  .main__grid-item-b-btn {
+    width: 7.5rem;
+    padding: 0.3125rem;
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 825px) {
+  .header__nav {
+    margin: 10px 0 0 0;
+    float: none;
+    text-align: center;
+  }
+
+  .header__nav-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: hsl(0, 0%, 100%);
+    height: 100vh;
+    width: 100vw;
+    transition: all 0.3s ease-in-out;
+
+    &_active {
+      display: flex;
+    }
+  }
+  .header__nav-item {
+    margin: 0.625rem 0;
+    font-size: 1.5rem;
+  }
+  .header__nav-menu-btn {
+    display: block;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &_active {
+      top: 1rem;
+    }
+
+    &_active .header__nav-menu-btn-bar:nth-child(2) {
+      opacity: 0;
+    }
+    &_active .header__nav-menu-btn-bar:nth-child(1) {
+      transform: translateY(14px) rotate(45deg);
+      background-color: hsl(0, 0%, 100%);
+    }
+    &_active .header__nav-menu-btn-bar:nth-child(3) {
+      transform: translateY(-14px) rotate(-45deg);
+      background-color: hsl(0, 0%, 100%);
+    }
+  }
+
+  .header__nav-item span {
+    display: none;
+  }
+
+  .header__link-lang-wrapper {
+    display: none;
+
+    &_active {
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      flex-direction: row-reverse;
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .header__logo img {
+    padding-top: 1.5625rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main__grid-item-a-text-center,
+  .main__grid-item-c-text-center,
+  .main__grid-item-d-text-center {
+    font-size: 0.9375rem;
+    margin: 1.25rem;
+  }
+
+  .main__grid-item-a-text-top,
+  .main__grid-item-c-text-top,
+  .main__grid-item-d-text-top {
+    font-size: 0.8rem;
+  }
+
+  .main__grid-item-a-text-bottom,
+  .main__grid-item-c-text-bottom,
+  .main__grid-item-d-text-bottom {
+    font-size: 0.7rem;
+  }
+
+  .main__grid-item-b-text-wrapper {
+    padding: 1rem;
+  }
+
+  .main__grid-item-b-text-top {
+    font-size: 1rem;
+  }
+
+  .main__grid-item-b-text-center {
+    line-height: 1.2;
+    margin: 0.5rem 0;
+    font-size: 0.7rem;
+  }
+
+  .main__grid-item-b-btn {
+    width: 7.5rem;
+    padding: 0.4375rem;
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .main__grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 0.125rem;
+    color: hsl(0, 0%, 100%);
+  }
+  .main__grid-item-a {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .main__grid-item-b {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    height: 200px;
+  }
+
+  .main__grid-item-c {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  .main__grid-item-d {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+
+  .header__link {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 </style>
