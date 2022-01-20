@@ -162,14 +162,19 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0.9375rem;
+    padding: 0.9375rem 0 0.9375rem 0.9375rem;
   }
 
   &__link {
     text-decoration: none;
     color: hsl(0, 0%, 20%);
-    padding: 10px;
-    margin: 0 10px;
+    padding: 0.625rem;
+    margin: 0 0.625rem;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 
   &__lang {
@@ -177,6 +182,7 @@ export default {
     width: 1.875rem;
     text-transform: uppercase;
     font-weight: bold;
+    cursor: pointer;
   }
 
   &__nav-menu-btn {
@@ -206,10 +212,18 @@ export default {
     text-transform: uppercase;
     font-weight: 500;
     padding: 0.625rem 0 1.25rem 0.9375rem;
+    border-top: 10px solid transparent;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      border-top: 0.625rem solid hsl(0, 0%, 20%);
+      cursor: pointer;
+    }
 
     i {
       transform: rotate(90deg);
       font-size: 1.25rem;
+      cursor: pointer;
     }
 
     span {
@@ -240,6 +254,11 @@ export default {
     position: relative;
     display: flex;
 
+    &:hover .main__grid-item-a-img {
+      transform: scale(0.99);
+      filter: brightness(0.5);
+    }
+
     &-text-wrapper {
       height: 100%;
       width: 100%;
@@ -249,6 +268,7 @@ export default {
       justify-content: center;
       position: absolute;
       text-align: center;
+      cursor: pointer;
     }
 
     &-text-top {
@@ -264,6 +284,7 @@ export default {
       width: 100%;
       height: 100%;
       filter: brightness(0.8);
+      transition: all 0.3s ease-in-out;
     }
   }
 
@@ -275,6 +296,11 @@ export default {
     position: relative;
     background: hsl(0, 0%, 20%);
 
+    &:hover .main__grid-item-b-img {
+      transform: scale(0.99);
+      filter: brightness(0.5);
+    }
+
     &-text-wrapper {
       height: 100%;
       width: 100%;
@@ -284,6 +310,7 @@ export default {
       position: absolute;
       top: 0;
       padding: 15%;
+      cursor: pointer;
     }
 
     &-text-top {
@@ -303,6 +330,13 @@ export default {
       width: 12.5rem;
       text-transform: uppercase;
       margin: 0 0 1.25rem 0;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background: hsl(0, 0%, 100%);
+        color: hsl(0, 0%, 20%);
+        cursor: pointer;
+      }
     }
   }
 
@@ -313,10 +347,16 @@ export default {
     grid-row-end: 3;
     position: relative;
 
+    &:hover .main__grid-item-c-img {
+      transform: scale(0.99);
+      filter: brightness(0.5);
+    }
+
     &-img {
       width: 100%;
       height: 100%;
       filter: brightness(0.8);
+      transition: all 0.3s ease-in-out;
     }
 
     &-text-wrapper {
@@ -328,6 +368,7 @@ export default {
       justify-content: center;
       position: absolute;
       top: 0;
+      cursor: pointer;
     }
 
     &-text-top {
@@ -347,10 +388,16 @@ export default {
     grid-row-end: 3;
     position: relative;
 
+    &:hover .main__grid-item-d-img {
+      transform: scale(0.99);
+      filter: brightness(0.5);
+    }
+
     &-img {
       width: 100%;
       height: 100%;
       filter: brightness(0.8);
+      transition: all 0.3s ease-in-out;
     }
 
     &-text-wrapper {
@@ -362,6 +409,7 @@ export default {
       justify-content: center;
       position: absolute;
       top: 0;
+      cursor: pointer;
     }
 
     &-text-top {
