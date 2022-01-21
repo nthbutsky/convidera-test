@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <Mockup />
+    <Chart />
   </div>
 </template>
 
 <script>
 import Mockup from "./components/Mockup.vue";
+import Chart from "./components/Chart.vue";
 
 export default {
   components: {
     Mockup,
+    Chart,
   },
 };
 </script>
