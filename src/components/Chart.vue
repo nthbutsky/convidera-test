@@ -19,10 +19,7 @@
     <button class="chart__btn" @click.prevent="insertChart(selectedChartType)">
       Insert
     </button>
-    <highcharts
-      v-if="isChart"
-      :options="allChartOptions[selectedChartType].chartOptions"
-    ></highcharts>
+    <highcharts v-if="isChart" :options="renderedType"></highcharts>
   </div>
 </template>
 
@@ -38,11 +35,12 @@ export default {
       isChart: false,
       chartTypes: ["pie", "bar", "line"],
       selectedChartType: "",
+      chosenChart: "",
       allChartOptions: {
         pie: {
           chartOptions: {
             chart: {
-              type: null,
+              type: "pie",
             },
             title: {
               text: "Points scored",
@@ -80,7 +78,7 @@ export default {
         bar: {
           chartOptions: {
             chart: {
-              type: null,
+              type: "bar",
             },
             title: {
               text: "Points scored",
@@ -151,7 +149,7 @@ export default {
         line: {
           chartOptions: {
             chart: {
-              type: null,
+              type: "line",
             },
             title: {
               text: "Points scored",
@@ -223,10 +221,15 @@ export default {
     };
   },
 
+  computed: {
+    renderedType() {
+      return this.allChartOptions[this.chosenChart].chartOptions;
+    },
+  },
+
   methods: {
-    insertChart(selectedChartType) {
-      this.allChartOptions[selectedChartType].chartOptions.chart.type =
-        this.selectedChartType;
+    insertChart(type) {
+      this.chosenChart = type;
       this.isChart = true;
     },
   },
