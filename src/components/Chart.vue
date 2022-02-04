@@ -1,12 +1,7 @@
 <template>
   <div class="chart">
-    <label class="chart__label" for="charts">Select a chart type</label>
-    <select
-      class="chart__select"
-      name="charts"
-      id="charts"
-      v-model="selectedChartType"
-    >
+    <label class="chart__label">Select a chart type</label>
+    <select class="chart__select" id="charts" v-model="selectedChartType">
       <option
         class="chart__option"
         v-for="(chartType, index) in chartTypes"
